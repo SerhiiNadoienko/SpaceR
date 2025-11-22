@@ -4,11 +4,28 @@ import { LayoutTextFlip } from "@/components/ui/layout-text-flip";
 import { SparklesCore } from "@/components/ui/sparkles";
 import { motion } from "motion/react";
 import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
+import { Button } from "@/components/ui/button";
+
+function TopBar() {
+  return (
+    <div className="w-full flex justify-end gap-4 p-4  z-10">
+      <Button asChild variant="outline">
+        <Link href="/signin">Log In</Link>
+      </Button>
+
+      <Button asChild>
+        <Link href="/signup">Sign Up</Link>
+      </Button>
+    </div>
+  );
+}
 
 export default function Home() {
   return (
-    <div className="h-screen relative w-full bg-black flex flex-col items-center justify-center overflow-hidden rounded-md">
-      <div className="relative z-10 text-center px-4">
+    <div className="h-screen relative w-full bg-black flex flex-col items-center  overflow-hidden rounded-md">
+      <TopBar />
+
+      <div className="relative z-10 text-center px-4 mt-16">
         <motion.div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
           <LayoutTextFlip
             text="Welcome to "
@@ -24,6 +41,7 @@ export default function Home() {
           <AnimatedGradientText>No Costs. Just Code.</AnimatedGradientText>
         </p>
       </div>
+
       <div className="absolute inset-0 h-screen w-full z-0">
         <SparklesCore
           id="tsparticlesfullpage"
