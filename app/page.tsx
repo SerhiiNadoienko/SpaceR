@@ -1,24 +1,9 @@
 "use client";
-import Link from "next/link";
 import { LayoutTextFlip } from "@/components/ui/layout-text-flip";
 import { SparklesCore } from "@/components/ui/sparkles";
 import { motion } from "motion/react";
 import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
-import { Button } from "@/components/ui/button";
-
-function TopBar() {
-  return (
-    <div className="w-full flex justify-end gap-4 p-4  z-10">
-      <Button asChild variant="outline">
-        <Link href="/signin">Log In</Link>
-      </Button>
-
-      <Button asChild>
-        <Link href="/signup">Sign Up</Link>
-      </Button>
-    </div>
-  );
-}
+import { TopBar } from "./components";
 
 export default function Home() {
   return (
