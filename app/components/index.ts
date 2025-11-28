@@ -1,2 +1,2 @@
-export { ProductCard } from "./ProductCard";
+export { WelcomeHeroBlock } from "./WelcomeHeroBlock";
 export { TopBar } from "./TopBar";

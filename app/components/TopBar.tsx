@@ -10,7 +10,7 @@ export const TopBar = () => {
     <div className="w-full flex items-center justify-between gap-4 px-8 py-4 z-10">
       <div className="flex items-center">
         <Image src={logo} alt="Logo" width={40} height={40} />
-        <h1 className="ml-2 text-white font-bold text-2xl">StateCraft</h1>
+        <h1 className="ml-2 text-white font-bold text-2xl">ReactNova</h1>
       </div>
 
       <div className="flex gap-4">
