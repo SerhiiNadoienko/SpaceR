@@ -6,7 +6,12 @@ import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
 
 export const WelcomeHeroBlock = () => {
   return (
-    <div className="relative z-10 text-center px-4 mt-16">
+    <motion.div
+      initial={{ y: -20, opacity: 0 }}
+      animate={{ x: 0, y: 0, opacity: 1 }}
+      transition={{ duration: 1, ease: "easeOut" }}
+      className="relative z-10 text-center px-4 mt-16"
+    >
       <motion.div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
         <LayoutTextFlip
           text="Welcome to "
@@ -22,6 +27,6 @@ export const WelcomeHeroBlock = () => {
         The most structured way to master React from scratch to senior.
         <AnimatedGradientText>No Costs. Just Code.</AnimatedGradientText>
       </p>
-    </div>
+    </motion.div>
   );
 };
