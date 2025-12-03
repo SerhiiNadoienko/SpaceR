@@ -7,8 +7,8 @@ import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
 export const WelcomeHeroBlock = () => {
   return (
     <motion.div
-      initial={{ y: -20, opacity: 0 }}
-      animate={{ x: 0, y: 0, opacity: 1 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       transition={{ duration: 1, ease: "easeOut" }}
       className="relative z-10 text-center px-4 mt-16"
     >

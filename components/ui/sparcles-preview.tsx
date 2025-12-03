@@ -13,7 +13,7 @@ export const SparklesPreview = ({
   className,
 }: SparklesPreviewType) => {
   return (
-    <div className="h-[40rem] w-full bg-black flex flex-col items-center justify-center overflow-hidden rounded-md z-1">
+    <div className="h-[40rem] w-full bg-gradient-to-b from-black/60 via-black/100 to-black flex flex-col items-center justify-center overflow-hidden rounded-md z-1">
       <div className={className}>{children}</div>
 
       <div className="w-[40rem] h-40 relative">
