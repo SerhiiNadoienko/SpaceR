@@ -1,8 +1,8 @@
 "use client";
 
-import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
-import { SparklesPreview } from "@/components/ui/sparcles-preview";
-import { ROUTES } from "@/constants/routes";
+import { HoverBorderGradient } from "@/src/components/ui/hover-border-gradient";
+import { SparklesPreview } from "@/src/components/ui/sparcles-preview";
+import { ROUTES } from "@/src/constants/routes";
 import Link from "next/link";
 
 export const GetStartedBlock = () => {

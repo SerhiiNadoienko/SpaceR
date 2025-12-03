@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { SparklesCore } from "../ui/sparkles";
+import { SparklesCore } from "./sparkles";
 import { motion } from "motion/react";
 
 interface SparklesPreviewType {

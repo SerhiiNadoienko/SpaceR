@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "motion/react";
-import { LayoutTextFlip } from "@/components/ui/layout-text-flip";
-import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
+import { LayoutTextFlip } from "@/src/components/ui/layout-text-flip";
+import { AnimatedGradientText } from "@/src/components/ui/animated-gradient-text";
 
 export const WelcomeHeroBlock = () => {
   return (

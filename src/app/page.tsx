@@ -1,8 +1,8 @@
 import { TopBar, WelcomeHeroBlock } from "./components";
-import { Particles } from "@/components/ui/particles";
+import { Particles } from "@/src/components/ui/particles";
 import { GetStartedBlock } from "./components/GetStartedBlock";
 import { IntroTitleBlock } from "./components/IntroTitleBlock";
-import { ROUTES } from "@/constants/routes";
+import { ROUTES } from "@/src/constants/routes";
 
 export default function Home() {
   return (

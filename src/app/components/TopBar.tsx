@@ -1,8 +1,8 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "@/src/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "@/public/logo.png";
-import { ROUTES } from "@/constants/routes";
+import { ROUTES } from "@/src/constants/routes";
 
 interface TopBarProps {
   auth?: boolean;

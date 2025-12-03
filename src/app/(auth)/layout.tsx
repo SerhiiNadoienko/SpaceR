@@ -1,4 +1,4 @@
-import { Spotlight } from "@/components/ui/spotlight-new";
+import { Spotlight } from "@/src/components/ui/spotlight-new";
 import { TopBar } from "../components";
 
 export default function AuthLayout({

@@ -1,11 +1,11 @@
 "use client";
 
 import { forwardRef, useRef } from "react";
-import { AnimatedBeam } from "@/components/ui/animated-beam";
-import { Card, CardTitle } from "@/components/Card";
-import { AnimatedTooltip } from "@/components/ui/animated-tooltip";
+import { AnimatedBeam } from "@/src/components/ui/animated-beam";
+import { Card, CardTitle } from "@/src/components/Card";
+import { AnimatedTooltip } from "@/src/components/ui/animated-tooltip";
 import { motion } from "motion/react";
-import { Pointer } from "@/components/ui/pointer";
+import { Pointer } from "@/src/components/ui/pointer";
 
 const LearningPathCard = forwardRef<
   HTMLDivElement,
