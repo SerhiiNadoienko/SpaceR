@@ -13,10 +13,8 @@ export const TopBar = ({ auth, nav }: TopBarProps) => {
   return (
     <div className="w-full flex items-center justify-between gap-4 py-4 z-10">
       <Link href={nav}>
-        {" "}
         <div className="flex items-center cursor-pointer">
-          <Image src={logo} alt="Logo" width={40} height={40} />
-          <h1 className="ml-2 text-white font-bold text-2xl">ReactNova</h1>
+          <Image src={logo} alt="Logo" width={36} height={36} />
         </div>
       </Link>
 
