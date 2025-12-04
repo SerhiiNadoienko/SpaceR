@@ -3,29 +3,23 @@
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
-import { User } from "@supabase/supabase-js";
 import { ROUTES } from "@/src/constants/routes";
 import { motion } from "motion/react";
 import { Button } from "@/src/components/ui/button";
 import { getSupabaseBrowserClient } from "@/src/lib/supabase/browser-client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { EmailPasswordForm } from "../../components/EmailPasswordForm";
 import Link from "next/link";
 
-type SignUpDemoProps = {
-  user: User | null;
-};
-
-export const SignUpDemo = ({ user }: SignUpDemoProps) => {
+export const SignUpDemo = () => {
   const supabase = getSupabaseBrowserClient();
-  const [currentUser, setCurrentUser] = useState<User | null>(user);
   const [showEmailForm, setShowEmailForm] = useState(false);
 
   const handleOAuthSignIn = async (provider: "google" | "github") => {
     await supabase.auth.signInWithOAuth({
       provider,
       options: {
-        redirectTo: `${window.location.origin}${ROUTES.SIGN_UP}`,
+        redirectTo: `${window.location.origin}${ROUTES.HOME}`,
         skipBrowserRedirect: false,
       },
     });
@@ -48,23 +42,6 @@ export const SignUpDemo = ({ user }: SignUpDemoProps) => {
       onClick: () => handleOAuthSignIn("github"),
     },
   ];
-
-  const handleSignOut = async () => {
-    await supabase.auth.signOut();
-    setCurrentUser(null);
-  };
-
-  useEffect(() => {
-    const { data: listener } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
-        setCurrentUser(session?.user ?? null);
-      }
-    );
-
-    return () => {
-      listener?.subscription.unsubscribe();
-    };
-  }, [supabase]);
 
   return (
     <>
@@ -126,31 +103,6 @@ export const SignUpDemo = ({ user }: SignUpDemoProps) => {
             </span>
             <Link href={ROUTES.SIGN_IN}>Sign in</Link>
           </div>
-          {currentUser ? (
-            <div className="bg-gray-800 p-4 rounded-md flex flex-col gap-2">
-              <h2 className="text-lg font-semibold">User Info</h2>
-              <p>
-                <span className="font-medium">ID:</span> {currentUser.id}
-              </p>
-              <p>
-                <span className="font-medium">Email:</span> {currentUser.email}
-              </p>
-              <p>
-                <span className="font-medium">Created At:</span>{" "}
-                {currentUser.created_at
-                  ? new Date(currentUser.created_at).toLocaleString()
-                  : "N/A"}
-              </p>
-              <button
-                onClick={handleSignOut}
-                className="mt-2 bg-red-600 hover:bg-red-500 py-2 rounded-md font-medium transition-colors"
-              >
-                Sign Out
-              </button>
-            </div>
-          ) : (
-            <>Session metadata will be show after sign in</>
-          )}
         </>
       )}
     </>

@@ -4,7 +4,8 @@ import { useState } from "react";
 import { getSupabaseBrowserClient } from "@/src/lib/supabase/browser-client";
 import { Button } from "@/src/components/ui/button";
 import { motion } from "motion/react";
-import { ROUTES } from "@/src/constants/routes";
+import { Input } from "@/src/components/ui/input";
+import { useRouter } from "next/navigation"; // если Next 13+ app router
 
 type EmailPasswordFormProps = {
   mode: "signin" | "signup";
@@ -16,60 +17,82 @@ export const EmailPasswordForm = ({ mode, onBack }: EmailPasswordFormProps) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [status, setStatus] = useState("");
+  const [emailError, setEmailError] = useState(false);
+
+  const router = useRouter();
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    setEmailError(false);
+    setStatus("");
+
     if (mode === "signup") {
-      const { error, data } = await supabase.auth.signUp({
+      const { data, error } = await supabase.auth.signUp({
         email,
         password,
-        options: {
-          // TODO: Replace navigation
-          emailRedirectTo: `${window.location.origin}${ROUTES.SIGN_UP}`,
-        },
       });
 
-      if (error) setStatus(error.message);
-      else setStatus("Check your inbox to confirm");
+      if (error) {
+        if (error.code === "user_already_exists") {
+          setEmailError(true);
+          setStatus("The email address you entered is already in use.");
+        } else {
+          setStatus(error.message);
+        }
+        return;
+      }
 
-      console.log({ data });
+      if (data.user) {
+        router.push("/");
+      }
     } else {
       const { error } = await supabase.auth.signInWithPassword({
         email,
         password,
       });
 
-      if (error) setStatus(error.message);
-      else setStatus("Signed in successfully");
+      if (error) {
+        setStatus(error.message);
+      } else {
+        router.push("/");
+      }
     }
   }
 
   return (
     <div className="flex flex-col gap-6 p-0">
       <h1 className="text-4xl font-bold text-center">
-        Sign {mode === "signup" ? "up" : "in"} with email{" "}
+        Sign {mode === "signup" ? "up" : "in"} with email
       </h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-        <input
+        <Input
           key="email"
           type="email"
           placeholder="Email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
           required
-          className="w-full px-4 py-2 rounded-md bg-transparent text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          className={`w-full ${emailError ? "border-red-500" : ""}`}
+          onChange={(e) => setEmail(e.target.value)}
         />
-        <input
+        {emailError && (
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-sm text-red-500"
+          >
+            The email address you entered is already in use.
+          </motion.p>
+        )}
+        <Input
           key="password"
           type="password"
           placeholder="Password"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
           required
-          className="w-full px-4 py-2 rounded-md bg-transparent text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          onChange={(e) => setPassword(e.target.value)}
         />
       </form>
-      {status && (
+      {status && !emailError && (
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -78,17 +101,17 @@ export const EmailPasswordForm = ({ mode, onBack }: EmailPasswordFormProps) => {
           {status}
         </motion.p>
       )}
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-3 w-full">
         <Button
           key="submit"
           type="submit"
+          variant="secondary"
           size="xl"
-          className="w-full"
           onClick={handleSubmit}
         >
           Sign Up
         </Button>
-        <Button variant="border" size="xl" className="w-full" onClick={onBack}>
+        <Button variant="border" size="xl" onClick={onBack}>
           Back to options
         </Button>
       </div>
