@@ -1,10 +1,10 @@
-import { SignUpDemo } from "./SignUpDemo";
+import { AuthDemo } from "../AuthDemo";
 
 export default async function SignUp() {
   return (
     <div className="pt-12">
       <div className="w-full max-w-md flex flex-col gap-6">
-        <SignUpDemo />
+        <AuthDemo mode="up" />
       </div>
     </div>
   );

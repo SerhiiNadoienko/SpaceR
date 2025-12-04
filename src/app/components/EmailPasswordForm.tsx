@@ -6,9 +6,11 @@ import { Button } from "@/src/components/ui/button";
 import { motion } from "motion/react";
 import { Input } from "@/src/components/ui/input";
 import { useRouter } from "next/navigation"; // если Next 13+ app router
+import Link from "next/link";
+import { ROUTES } from "@/src/constants/routes";
 
 type EmailPasswordFormProps = {
-  mode: "signin" | "signup";
+  mode: "in" | "up";
   onBack: () => void;
 };
 
@@ -26,7 +28,7 @@ export const EmailPasswordForm = ({ mode, onBack }: EmailPasswordFormProps) => {
     setEmailError(false);
     setStatus("");
 
-    if (mode === "signup") {
+    if (mode === "up") {
       const { data, error } = await supabase.auth.signUp({
         email,
         password,
@@ -61,9 +63,7 @@ export const EmailPasswordForm = ({ mode, onBack }: EmailPasswordFormProps) => {
 
   return (
     <div className="flex flex-col gap-6 p-0">
-      <h1 className="text-4xl font-bold text-center">
-        Sign {mode === "signup" ? "up" : "in"} with email
-      </h1>
+      <h1 className="text-4xl font-bold text-center">Sign {mode} with email</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-3">
         <Input
           key="email"
@@ -91,6 +91,16 @@ export const EmailPasswordForm = ({ mode, onBack }: EmailPasswordFormProps) => {
           required
           onChange={(e) => setPassword(e.target.value)}
         />
+        {mode === "in" && (
+          <div className="text-right mt-1">
+            <Link
+              href={ROUTES.RESET_PASSWORD}
+              className="text-sm text-gray-500 text-xs hover:underline"
+            >
+              Forgot password?
+            </Link>
+          </div>
+        )}
       </form>
       {status && !emailError && (
         <motion.p
@@ -109,10 +119,10 @@ export const EmailPasswordForm = ({ mode, onBack }: EmailPasswordFormProps) => {
           size="xl"
           onClick={handleSubmit}
         >
-          Sign Up
+          Sign {mode}
         </Button>
         <Button variant="border" size="xl" onClick={onBack}>
-          Back to options
+          Go back
         </Button>
       </div>
     </div>

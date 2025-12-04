@@ -34,12 +34,12 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         onMouseMove={handleMouseMove}
         onMouseEnter={() => setVisible(true)}
         onMouseLeave={() => setVisible(false)}
-        className="w-full group/input rounded-lg p-[2px] transition duration-300"
+        className="w-full group/input rounded-lg  transition duration-300"
       >
         <input
           type={type}
           className={cn(
-            `shadow-input dark:placeholder-text-neutral-600 flex h-10 w-full rounded-md border border-gray-700 bg-black px-3 py-2 text-sm text-white transition duration-400 group-hover/input:shadow-none file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-accent disabled:cursor-not-allowed disabled:opacity-50 dark:bg-zinc-800 dark:text-white dark:shadow-[0px_0px_1px_1px_#404040] dark:focus-visible:ring-neutral-600`,
+            `shadow-input dark:placeholder-text-neutral-600 flex h-10 w-full rounded-md border border-gray-700 bg-black px-3 py-2 text-sm text-white transition duration-400 group-hover/input:shadow-none file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-accent disabled:cursor-not-allowed disabled:opacity-50 dark:bg-zinc-800 dark:text-white dark:shadow-[0px_0px_1px_1px_#404040] dark:focus-visible:ring-neutral-600`,
             className
           )}
           ref={ref}

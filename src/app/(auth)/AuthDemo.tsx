@@ -8,10 +8,20 @@ import { motion } from "motion/react";
 import { Button } from "@/src/components/ui/button";
 import { getSupabaseBrowserClient } from "@/src/lib/supabase/browser-client";
 import { useState } from "react";
-import { EmailPasswordForm } from "../../components/EmailPasswordForm";
+import { EmailPasswordForm } from "../components/EmailPasswordForm";
 import Link from "next/link";
 
-export const SignUpDemo = () => {
+type AuthDemoProps = {
+  mode: "in" | "up";
+};
+
+export const AuthDemo = ({ mode }: AuthDemoProps) => {
+  const config = {
+    title: `${mode === "up" ? "Create" : "Sign in to"} your account`,
+    href: mode === "up" ? ROUTES.SIGN_IN : ROUTES.SIGN_UP,
+    buttonText: mode === "up" ? "in" : "up",
+  };
+
   const supabase = getSupabaseBrowserClient();
   const [showEmailForm, setShowEmailForm] = useState(false);
 
@@ -32,32 +42,27 @@ export const SignUpDemo = () => {
       onClick: () => handleOAuthSignIn("google"),
     },
     {
-      icon: <HiOutlineMail size={30} className="text-white size-5" />,
-      text: "email",
-      onClick: () => setShowEmailForm(true),
-    },
-    {
       icon: <FaGithub size={30} className="text-white size-5" />,
       text: "GitHub",
       onClick: () => handleOAuthSignIn("github"),
+    },
+    {
+      icon: <HiOutlineMail size={30} className="text-white size-5" />,
+      text: "email",
+      onClick: () => setShowEmailForm(true),
     },
   ];
 
   return (
     <>
       {showEmailForm ? (
-        <EmailPasswordForm
-          mode="signup"
-          onBack={() => setShowEmailForm(false)}
-        />
+        <EmailPasswordForm mode={mode} onBack={() => setShowEmailForm(false)} />
       ) : (
         <>
-          <h1 className="text-4xl font-bold text-center">
-            Create your account
-          </h1>
+          <h1 className="text-4xl font-bold text-center">{config.title}</h1>
           <div className="flex flex-col gap-3 mt-4">
             {buttonsList.map(({ icon, text, onClick }, i) => {
-              const fromLeft = i % 2 === 0;
+              const fromLeft = mode === "up" ? i % 2 === 0 : i % 2 !== 0;
 
               return (
                 <motion.div
@@ -84,7 +89,7 @@ export const SignUpDemo = () => {
                   >
                     {icon}
                     <span className="text-white font-sans">
-                      Sign up with {text}
+                      Sign {mode} with {text}
                     </span>
                   </Button>
                 </motion.div>
@@ -101,7 +106,7 @@ export const SignUpDemo = () => {
             <span className="font-sans text-gray-500">
               Already have an account?
             </span>
-            <Link href={ROUTES.SIGN_IN}>Sign in</Link>
+            <Link href={config.href}>Sign {config.buttonText}</Link>
           </div>
         </>
       )}
