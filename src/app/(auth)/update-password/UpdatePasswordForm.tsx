@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { getSupabaseBrowserClient } from "@/src/lib/supabase/browser-client";
 import { Button } from "@/src/components/ui/button";
 import { Input } from "@/src/components/ui/input";
 import { motion } from "motion/react";
 import { useRouter } from "next/navigation";
+import { Confetti, ConfettiRef } from "@/components/ui/confetti";
 
 export const UpdatePasswordForm = () => {
   const supabase = getSupabaseBrowserClient();
@@ -13,7 +14,7 @@ export const UpdatePasswordForm = () => {
   const [password, setPassword] = useState("");
   const [status, setStatus] = useState("");
   const [isUpdated, setIsUpdated] = useState(false);
-
+  const confettiRef = useRef<ConfettiRef>(null);
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("");
@@ -28,24 +29,35 @@ export const UpdatePasswordForm = () => {
       setIsUpdated(true);
       setTimeout(() => {
         router.push("/");
-      }, 1500);
+      }, 2500);
     }
   };
 
   return (
     <>
-      {!isUpdated ? (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className="flex flex-col gap-2 text-center"
-        >
-          <h1 className="text-2xl font-bold">All set!</h1>
-          <p className="text-gray-400 text-sm">
-            Your password has been updated. You’ll be redirected shortly… 🚀
-          </p>
-        </motion.div>
+      {isUpdated ? (
+        <>
+          <>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="flex flex-col gap-3 items-center justify-center text-center relative z-10 p-4"
+            >
+              <h1 className="text-3xl font-extrabold  drop-shadow-md">
+                All set! 🎉
+              </h1>
+              <p className="text-gray-400 text-base max-w-xs">
+                Your password has been updated successfully. You’ll be
+                redirected shortly… 🚀
+              </p>
+            </motion.div>
+            <Confetti
+              ref={confettiRef}
+              className="absolute  inset-0 z-0 w-full h-full"
+            />
+          </>
+        </>
       ) : (
         <>
           <h1 className=" font-bold text-left mb-2">Almost done!</h1>
