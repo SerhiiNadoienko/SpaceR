@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { getSupabaseBrowserClient } from "@/src/lib/supabase/browser-client";
+import { createClient } from "@/src/lib/supabase/client";
 import { Button } from "@/src/components/ui/button";
 import { motion } from "motion/react";
 import { Input } from "@/src/components/ui/input";
@@ -15,7 +15,7 @@ type EmailPasswordFormProps = {
 };
 
 export const EmailPasswordForm = ({ mode, onBack }: EmailPasswordFormProps) => {
-  const supabase = getSupabaseBrowserClient();
+  const supabase = createClient();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [status, setStatus] = useState("");

@@ -1,9 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
 import { User } from "@supabase/supabase-js";
-import { getSupabaseBrowserClient } from "../lib/supabase/browser-client";
 import { useRouter } from "next/navigation"; // Next 13+ app router
 import { ROUTES } from "../constants/routes";
+import { createClient } from "../lib/supabase/client";
 
 type TempUserInfoProps = {
   user: User | null;
@@ -11,7 +11,7 @@ type TempUserInfoProps = {
 
 export const TempUserInfo = ({ user }: TempUserInfoProps) => {
   const router = useRouter();
-  const supabase = getSupabaseBrowserClient();
+  const supabase = createClient();
   const [currentUser, setCurrentUser] = useState<User | null>(user);
 
   const handleSignOut = async () => {
@@ -46,12 +46,7 @@ export const TempUserInfo = ({ user }: TempUserInfoProps) => {
           <p>
             <span className="font-medium">Email:</span> {currentUser.email}
           </p>
-          <p>
-            <span className="font-medium">Created At:</span>{" "}
-            {currentUser.created_at
-              ? new Date(currentUser.created_at).toLocaleString()
-              : "N/A"}
-          </p>
+
           <button
             onClick={handleSignOut}
             className="z-20 mt-2 bg-red-600 hover:bg-red-500 py-2 rounded-md font-medium transition-colors"

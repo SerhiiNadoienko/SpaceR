@@ -1,11 +1,11 @@
 import { TopBar } from "./components";
 import { ROUTES } from "@/src/constants/routes";
-import { createSupabaseServerClient } from "../lib/supabase/server-client";
 import { TempUserInfo } from "./TempUserInfo";
 import { redirect } from "next/navigation";
+import { createServer } from "../lib/supabase/server";
 
 export default async function Home() {
-  const supabase = await createSupabaseServerClient();
+  const supabase = await createServer();
 
   const {
     data: { user },

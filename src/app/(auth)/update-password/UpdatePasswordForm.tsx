@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { getSupabaseBrowserClient } from "@/src/lib/supabase/browser-client";
+import { createClient } from "@/src/lib/supabase/client";
 import { Button } from "@/src/components/ui/button";
 import { Input } from "@/src/components/ui/input";
 import { motion } from "motion/react";
@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 import { Confetti, ConfettiRef } from "@/components/ui/confetti";
 
 export const UpdatePasswordForm = () => {
-  const supabase = getSupabaseBrowserClient();
+  const supabase = createClient();
   const router = useRouter();
   const [password, setPassword] = useState("");
   const [status, setStatus] = useState("");

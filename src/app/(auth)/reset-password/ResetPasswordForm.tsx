@@ -1,14 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { getSupabaseBrowserClient } from "@/src/lib/supabase/browser-client";
 import { Button } from "@/src/components/ui/button";
 import { Input } from "@/src/components/ui/input";
 import { motion } from "motion/react";
 import { ROUTES } from "@/src/constants/routes";
+import { createClient } from "@/src/lib/supabase/client";
 
 export const ResetPasswordForm = () => {
-  const supabase = getSupabaseBrowserClient();
+  const supabase = createClient();
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState("");
   const [isSent, setIsSent] = useState(false);

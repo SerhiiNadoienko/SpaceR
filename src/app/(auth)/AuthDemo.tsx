@@ -6,10 +6,10 @@ import { HiOutlineMail } from "react-icons/hi";
 import { ROUTES } from "@/src/constants/routes";
 import { motion } from "motion/react";
 import { Button } from "@/src/components/ui/button";
-import { getSupabaseBrowserClient } from "@/src/lib/supabase/browser-client";
 import { useState } from "react";
 import { EmailPasswordForm } from "../components";
 import Link from "next/link";
+import { createClient } from "@/src/lib/supabase/client";
 
 type AuthDemoProps = {
   mode: "in" | "up";
@@ -22,7 +22,7 @@ export const AuthDemo = ({ mode }: AuthDemoProps) => {
     buttonText: mode === "up" ? "in" : "up",
   };
 
-  const supabase = getSupabaseBrowserClient();
+  const supabase = createClient();
   const [showEmailForm, setShowEmailForm] = useState(false);
 
   const handleOAuthSignIn = async (provider: "google" | "github") => {
