@@ -1,32 +1,38 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { User } from "@supabase/supabase-js";
 import { getSupabaseBrowserClient } from "../lib/supabase/browser-client";
+import { useRouter } from "next/navigation"; // Next 13+ app router
+import { ROUTES } from "../constants/routes";
 
 type TempUserInfoProps = {
   user: User | null;
 };
 
 export const TempUserInfo = ({ user }: TempUserInfoProps) => {
+  const router = useRouter();
   const supabase = getSupabaseBrowserClient();
   const [currentUser, setCurrentUser] = useState<User | null>(user);
 
   const handleSignOut = async () => {
     await supabase.auth.signOut();
     setCurrentUser(null);
+    router.push(ROUTES.WELCOME);
   };
 
   useEffect(() => {
     const { data: listener } = supabase.auth.onAuthStateChange(
       (_event, session) => {
-        setCurrentUser(session?.user ?? null);
+        if (!session) {
+          router.push(ROUTES.WELCOME);
+        } else {
+          setCurrentUser(session.user);
+        }
       }
     );
 
-    return () => {
-      listener?.subscription.unsubscribe();
-    };
-  }, [supabase]);
+    return () => listener?.subscription.unsubscribe();
+  }, [supabase, router]);
 
   return (
     <div>

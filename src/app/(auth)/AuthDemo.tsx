@@ -8,7 +8,7 @@ import { motion } from "motion/react";
 import { Button } from "@/src/components/ui/button";
 import { getSupabaseBrowserClient } from "@/src/lib/supabase/browser-client";
 import { useState } from "react";
-import { EmailPasswordForm } from "../components/EmailPasswordForm";
+import { EmailPasswordForm } from "../components";
 import Link from "next/link";
 
 type AuthDemoProps = {

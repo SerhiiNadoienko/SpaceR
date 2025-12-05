@@ -44,7 +44,7 @@ export const EmailPasswordForm = ({ mode, onBack }: EmailPasswordFormProps) => {
       }
 
       if (data.user) {
-        router.push("/");
+        router.push(ROUTES.HOME);
       }
     } else {
       const { error } = await supabase.auth.signInWithPassword({
@@ -62,7 +62,7 @@ export const EmailPasswordForm = ({ mode, onBack }: EmailPasswordFormProps) => {
         }
         return;
       }
-      router.push("/");
+      router.push(ROUTES.HOME);
     }
   }
 

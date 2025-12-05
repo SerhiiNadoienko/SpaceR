@@ -1,10 +1,8 @@
-import { TopBar, WelcomeHeroBlock } from "./components";
-import { Particles } from "@/src/components/ui/particles";
-import { GetStartedBlock } from "./components/GetStartedBlock";
-import { IntroTitleBlock } from "./components/IntroTitleBlock";
+import { TopBar } from "./components";
 import { ROUTES } from "@/src/constants/routes";
 import { createSupabaseServerClient } from "../lib/supabase/server-client";
 import { TempUserInfo } from "./TempUserInfo";
+import { redirect } from "next/navigation";
 
 export default async function Home() {
   const supabase = await createSupabaseServerClient();
@@ -13,15 +11,16 @@ export default async function Home() {
     data: { user },
   } = await supabase.auth.getUser();
 
+  const { data: session } = await supabase.auth.getSession();
+  console.log(user, session);
+
+  if (session === null) {
+    redirect(ROUTES.WELCOME);
+  }
+
   return (
     <div className="h-screen relative w-full bg-black flex flex-col items-center  overflow-hidden rounded-md px-8">
-      <TopBar nav={ROUTES.HOME} auth={true} />
-      <WelcomeHeroBlock />
-      <IntroTitleBlock />
-      <GetStartedBlock />
-      <div className="absolute inset-0 h-screen w-full z-0">
-        <Particles quantity={200} color="#616161" />
-      </div>
+      <TopBar nav={ROUTES.HOME} auth={false} />
       <TempUserInfo user={user} />
     </div>
   );
