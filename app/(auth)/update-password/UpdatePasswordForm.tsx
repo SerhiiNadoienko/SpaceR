@@ -1,12 +1,12 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { createClient } from "@/src/lib/supabase/client";
-import { Button } from "@/src/components/ui/button";
-import { Input } from "@/src/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { motion } from "motion/react";
 import { useRouter } from "next/navigation";
 import { Confetti, ConfettiRef } from "@/components/ui/confetti";
+import { createClient } from "@/lib/supabase/client";
 
 export const UpdatePasswordForm = () => {
   const supabase = createClient();

@@ -1,11 +1,11 @@
 "use client";
 
 import { motion } from "motion/react";
-import { LayoutTextFlip } from "@/src/components/ui/layout-text-flip";
-import { AnimatedGradientText } from "@/src/components/ui/animated-gradient-text";
-import { HoverBorderGradient } from "@/src/components/ui/hover-border-gradient";
-import { SparklesPreview } from "@/src/components/ui/sparcles-preview";
-import { ROUTES } from "@/src/constants/routes";
+import { LayoutTextFlip } from "@/components/ui/layout-text-flip";
+import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
+import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
+import { SparklesPreview } from "@/components/ui/sparcles-preview";
+import { ROUTES } from "@/constants/routes";
 import Link from "next/link";
 
 export const WelcomePageDemo = () => {

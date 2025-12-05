@@ -1,8 +1,8 @@
-import { Particles } from "@/src/components/ui/particles";
-import { TopBar } from "../components";
-import { ROUTES } from "@/src/constants/routes";
+import { Particles } from "@/components/ui/particles";
+import { TopBar } from "@/components/TopBar";
+import { ROUTES } from "@/constants/routes";
 import { WelcomePageDemo } from "./WelcomePageDemo";
-import { createServer } from "@/src/lib/supabase/server";
+import { createServer } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 
 export default async function WelcomePage() {

@@ -1,6 +1,6 @@
-import { Spotlight } from "@/src/components/ui/spotlight-new";
-import { TopBar } from "../components";
-import { ROUTES } from "@/src/constants/routes";
+import { Spotlight } from "@/components/ui/spotlight-new";
+import { TopBar } from "@/components/TopBar";
+import { ROUTES } from "@/constants/routes";
 
 export default function AuthLayout({
   children,

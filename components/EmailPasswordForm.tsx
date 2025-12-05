@@ -1,13 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { createClient } from "@/src/lib/supabase/client";
-import { Button } from "@/src/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { motion } from "motion/react";
-import { Input } from "@/src/components/ui/input";
+import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation"; // Next 13+ app router
 import Link from "next/link";
-import { ROUTES } from "@/src/constants/routes";
+import { ROUTES } from "@/constants/routes";
+import { createClient } from "@/lib/supabase/client";
 
 type EmailPasswordFormProps = {
   mode: "in" | "up";

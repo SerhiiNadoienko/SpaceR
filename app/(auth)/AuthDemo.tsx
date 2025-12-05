@@ -3,13 +3,13 @@
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
-import { ROUTES } from "@/src/constants/routes";
+import { ROUTES } from "@/constants/routes";
 import { motion } from "motion/react";
-import { Button } from "@/src/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { EmailPasswordForm } from "../components";
 import Link from "next/link";
-import { createClient } from "@/src/lib/supabase/client";
+import { createClient } from "@/lib/supabase/client";
+import { EmailPasswordForm } from "@/components/EmailPasswordForm";
 
 type AuthDemoProps = {
   mode: "in" | "up";

@@ -1,8 +1,8 @@
-import { TopBar } from "./components";
-import { ROUTES } from "@/src/constants/routes";
+import { ROUTES } from "@/constants/routes";
 import { TempUserInfo } from "./TempUserInfo";
 import { redirect } from "next/navigation";
 import { createServer } from "../lib/supabase/server";
+import { TopBar } from "@/components/TopBar";
 
 export default async function Home() {
   const supabase = await createServer();
