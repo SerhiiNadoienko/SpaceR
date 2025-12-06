@@ -1,25 +1,17 @@
 "use client";
 
-import { ROUTES } from "@/constants/routes";
 import { TopBar } from "@/components/TopBar";
-import { TempUserInfo } from "./TempUserInfo";
+import { ROUTES } from "@/constants/routes";
 import { useSupabase } from "@/hooks/useSupabase";
 
-export default function Home() {
+export default function SettingsPage() {
   const { user } = useSupabase();
 
   return (
     <div className="h-screen relative w-full bg-black flex flex-col items-center overflow-hidden rounded-md px-8">
       <TopBar nav={ROUTES.HOME} user={user} />
-      {!user ? (
-        <>
-          <div>No user...</div>
-        </>
-      ) : (
-        <>
-          <TempUserInfo user={user} />
-        </>
-      )}
+
+      <>user setting</>
     </div>
   );
 }

@@ -11,7 +11,7 @@ export default async function WelcomePage() {
   const { data } = await supabase.auth.getClaims();
 
   if (data?.claims) {
-    redirect("/");
+    redirect(ROUTES.HOME);
   }
   return (
     <div className="h-screen relative w-full bg-black flex flex-col items-center  overflow-hidden rounded-md px-8">

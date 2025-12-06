@@ -3,19 +3,16 @@ import Link from "next/link";
 import Image from "next/image";
 import logo from "@/public/logo.png";
 import { ROUTES } from "@/constants/routes";
-import { createServer } from "@/lib/supabase/server";
 import { UserMenu } from "./UserMenu";
+import { User } from "@supabase/supabase-js";
 
 interface TopBarProps {
   showAuth?: boolean;
   nav: string;
+  user?: User | null;
 }
 
-export const TopBar = async ({ showAuth, nav }: TopBarProps) => {
-  const supabase = await createServer();
-
-  const { data } = await supabase.auth.getClaims();
-
+export const TopBar = ({ showAuth, nav, user }: TopBarProps) => {
   return (
     <div className="w-full flex items-center justify-between gap-4 py-4 z-10">
       <Link href={nav}>
@@ -36,7 +33,7 @@ export const TopBar = async ({ showAuth, nav }: TopBarProps) => {
         </div>
       )}
 
-      {data && <UserMenu />}
+      {user && <UserMenu />}
     </div>
   );
 };

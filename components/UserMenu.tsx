@@ -4,6 +4,8 @@ import { DropdownMenu } from "./DropdownMenu";
 import { HiUser, HiCog6Tooth, HiArrowRightOnRectangle } from "react-icons/hi2";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { createClient } from "@/lib/supabase/client";
+import { redirect } from "next/navigation";
+import { ROUTES } from "@/constants/routes";
 
 export const UserMenu = () => {
   const supabase = createClient();
@@ -22,7 +24,11 @@ export const UserMenu = () => {
       }
       items={[
         { label: "Profile", icon: <HiUser size={18} /> },
-        { label: "Settings", icon: <HiCog6Tooth size={18} /> },
+        {
+          label: "Settings",
+          icon: <HiCog6Tooth size={18} />,
+          onClick: () => redirect(ROUTES.SETTINGS),
+        },
         {
           label: "Sign out",
           icon: <HiArrowRightOnRectangle size={18} />,

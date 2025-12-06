@@ -5,4 +5,5 @@ export const ROUTES = {
   SIGN_UP: "/signup",
   RESET_PASSWORD: "/reset-password",
   UPDATE_PASSWORD: "/update-password",
+  SETTINGS: "/settings",
 } as const;
