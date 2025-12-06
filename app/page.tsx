@@ -12,7 +12,6 @@ export default async function Home() {
   } = await supabase.auth.getUser();
 
   const { data: session } = await supabase.auth.getSession();
-  console.log(user, session);
 
   if (session === null) {
     redirect(ROUTES.WELCOME);
@@ -20,7 +19,7 @@ export default async function Home() {
 
   return (
     <div className="h-screen relative w-full bg-black flex flex-col items-center  overflow-hidden rounded-md px-8">
-      <TopBar nav={ROUTES.HOME} auth={false} />
+      <TopBar nav={ROUTES.HOME} />
       <TempUserInfo user={user} />
     </div>
   );

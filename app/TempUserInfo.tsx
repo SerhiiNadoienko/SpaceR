@@ -14,12 +14,6 @@ export const TempUserInfo = ({ user }: TempUserInfoProps) => {
   const supabase = createClient();
   const [currentUser, setCurrentUser] = useState<User | null>(user);
 
-  const handleSignOut = async () => {
-    await supabase.auth.signOut();
-    setCurrentUser(null);
-    router.push(ROUTES.WELCOME);
-  };
-
   useEffect(() => {
     const { data: listener } = supabase.auth.onAuthStateChange(
       (_event, session) => {
@@ -46,13 +40,6 @@ export const TempUserInfo = ({ user }: TempUserInfoProps) => {
           <p>
             <span className="font-medium">Email:</span> {currentUser.email}
           </p>
-
-          <button
-            onClick={handleSignOut}
-            className="z-20 mt-2 bg-red-600 hover:bg-red-500 py-2 rounded-md font-medium transition-colors"
-          >
-            Sign Out
-          </button>
         </div>
       ) : (
         <>Session metadata will be show after sign in</>
