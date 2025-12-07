@@ -1,25 +1,14 @@
-"use client";
-
-import { ROUTES } from "@/constants/routes";
-import { TopBar } from "@/components/TopBar";
+import { createServer } from "@/lib/supabase/server";
 import { TempUserInfo } from "./TempUserInfo";
-import { useSupabase } from "@/hooks/useSupabase";
 
-export default function Home() {
-  const { user } = useSupabase();
+export default async function Home() {
+  const supabase = await createServer();
+  const { data } = await supabase.auth.getClaims();
 
-  return (
-    <div className="h-screen relative w-full bg-black flex flex-col items-center overflow-hidden rounded-md px-8">
-      <TopBar nav={ROUTES.HOME} user={user} />
-      {!user ? (
-        <>
-          <div>No user...</div>
-        </>
-      ) : (
-        <>
-          <TempUserInfo user={user} />
-        </>
-      )}
-    </div>
-  );
+  const userMetaData = data?.claims?.user_metadata;
+  if (!userMetaData) return <>No data</>;
+
+  console.log(data?.claims);
+
+  return <TempUserInfo userMetaData={userMetaData} />;
 }

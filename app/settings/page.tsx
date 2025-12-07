@@ -1,17 +1,13 @@
-"use client";
+import { createServer } from "@/lib/supabase/server";
 
-import { TopBar } from "@/components/TopBar";
-import { ROUTES } from "@/constants/routes";
-import { useSupabase } from "@/hooks/useSupabase";
+export default async function SettingsPage() {
+  const supabase = await createServer();
+  const { data } = await supabase.auth.getClaims();
 
-export default function SettingsPage() {
-  const { user } = useSupabase();
+  const userMetaData = data?.claims?.user_metadata;
+  if (!userMetaData) return <>No data</>;
 
-  return (
-    <div className="h-screen relative w-full bg-black flex flex-col items-center overflow-hidden rounded-md px-8">
-      <TopBar nav={ROUTES.HOME} user={user} />
+  console.log(data?.claims);
 
-      <>user setting</>
-    </div>
-  );
+  return <>user setting</>;
 }

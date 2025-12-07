@@ -13,7 +13,7 @@ export const SparklesPreview = ({
   className,
 }: SparklesPreviewType) => {
   return (
-    <div className="h-[40rem] w-full bg-gradient-to-b from-black/60 via-black/100 to-black flex flex-col items-center justify-center overflow-hidden rounded-md z-1">
+    <div className="h-[40rem] w-full from-black/60 via-black/100 to-black flex flex-col items-center justify-center overflow-hidden rounded-md z-1">
       <div className={className}>{children}</div>
 
       <div className="w-[40rem] h-40 relative">
@@ -61,9 +61,9 @@ export const SparklesPreview = ({
             background="transparent"
             minSize={0.4}
             maxSize={1}
-            particleDensity={100}
+            particleDensity={200}
             className="w-full h-full"
-            particleColor="#FFFFFF"
+            particleColor="#4f3cf7"
           />
         </motion.div>
 
