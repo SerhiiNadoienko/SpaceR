@@ -23,6 +23,8 @@ export const AuthDemo = ({ mode }: AuthDemoProps) => {
     title: `${mode === "up" ? "Create" : "Sign in to"} your account`,
     href: mode === "up" ? ROUTES.SIGN_IN : ROUTES.SIGN_UP,
     buttonText: mode === "up" ? "in" : "up",
+    description:
+      mode === "up" ? "Already have an account?" : "Don't have an account?",
   };
 
   const buttonsList = [
@@ -89,9 +91,7 @@ export const AuthDemo = ({ mode }: AuthDemoProps) => {
           transition={{ duration: 0.8, ease: "easeOut" }}
         />{" "}
         <div className="flex gap-2 justify-center">
-          <span className="font-sans text-gray-500">
-            Already have an account?
-          </span>
+          <span className="font-sans text-gray-500">{config.description}</span>
           <Link href={config.href}>Sign {config.buttonText}</Link>
         </div>
       </>
