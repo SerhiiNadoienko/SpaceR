@@ -5,7 +5,7 @@ type ProviderType = "google" | "github" | "discord";
 
 const signInWith = (provider: ProviderType) => async () => {
   const supabase = createClient();
-  const authCallback = `${window.location.origin}/auth/callback`;
+  const authCallback = `${process.env.NEXT_PUBLIC_SUPABASE_REDIRECT_URL}/auth/callback`;
 
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider,
