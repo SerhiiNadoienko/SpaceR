@@ -25,7 +25,7 @@ export const UserMenu = () => {
         </Avatar>
       }
       items={[
-        { label: "Profile", icon: <HiUser size={18} /> },
+        // { label: "Profile", icon: <HiUser size={18} /> },
         {
           label: "Settings",
           icon: <HiCog6Tooth size={18} />,

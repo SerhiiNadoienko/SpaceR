@@ -1,5 +1,6 @@
+import { LessonsProgressList } from "@/components/LessonsProgressList";
 import { createServer } from "@/lib/supabase/server";
-import { TempUserInfo } from "./TempUserInfo";
+import { mockLessonsProgressList } from "@/mocks/lessonsProgressList.mock";
 
 export default async function Home() {
   const supabase = await createServer();
@@ -10,5 +11,11 @@ export default async function Home() {
 
   console.log(data?.claims);
 
-  return <TempUserInfo userMetaData={userMetaData} />;
+  return (
+    <div className="flex w-full gap-5">
+      {/* TODO: replace mockLessonsProgressList to the real data*/}
+      <LessonsProgressList lessonsList={mockLessonsProgressList} />
+      <div>another content</div>
+    </div>
+  );
 }
