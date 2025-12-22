@@ -22,6 +22,8 @@ const config: Config = {
         "accent-foreground": "hsl(var(--accent-foreground))",
         destructive: "hsl(var(--destructive))",
         "destructive-foreground": "hsl(var(--destructive-foreground))",
+        purple: "hsl(var(--purple))",
+        "light-green": "hsl(var(--light-green))",
       },
     },
   },
