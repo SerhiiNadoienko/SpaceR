@@ -1,4 +1,5 @@
 import { createServer } from "@/lib/supabase/server";
+import { TempUserInfo } from "../TempUserInfo";
 
 export default async function SettingsPage() {
   const supabase = await createServer();
@@ -9,5 +10,5 @@ export default async function SettingsPage() {
 
   console.log(data?.claims);
 
-  return <>user setting</>;
+  return <TempUserInfo userMetaData={userMetaData} />;
 }

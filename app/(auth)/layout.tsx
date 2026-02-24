@@ -1,4 +1,4 @@
-import { Spotlight } from "@/components/ui/spotlight-new";
+// import { Spotlight } from "@/components/ui/spotlight-new";
 
 export default function AuthLayout({
   children,
@@ -7,7 +7,7 @@ export default function AuthLayout({
 }) {
   return (
     <>
-      <Spotlight />
+      {/* <Spotlight /> */}
       {children}
     </>
   );
