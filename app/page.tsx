@@ -1,8 +1,8 @@
-import { ActivityHeatmap } from "@/components/ActivityHeatmap";
-import { Card } from "@/components/Card";
+// import { ActivityHeatmap } from "@/components/ActivityHeatmap";
+// import { Card } from "@/components/Card";
 import { LessonsProgressList } from "@/components/LessonsProgressList";
 import { createServer } from "@/lib/supabase/server";
-import { mockActivityData } from "@/mocks/ActivityData.mock";
+// import { mergedData } from "@/lib/utils/heatmap";
 import { mockLessonsProgressList } from "@/mocks/lessonsProgressList.mock";
 
 export default async function Home() {
@@ -17,9 +17,9 @@ export default async function Home() {
   return (
     <div className="w-full flex flex-col gap-12">
       {/* TODO: replace mockActivityData to the real data*/}
-      <Card className="bg-transparent p-4">
-        <ActivityHeatmap data={mockActivityData} />
-      </Card>
+      {/* <Card className="bg-transparent p-4">
+        <ActivityHeatmap data={mergedData} />
+      </Card> */}
       <div className="flex w-full gap-5">
         {/* TODO: replace mockLessonsProgressList to the real data*/}
         <LessonsProgressList lessonsList={mockLessonsProgressList} />
